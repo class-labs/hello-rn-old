@@ -1,12 +1,14 @@
 {
   "name": "hello-rn",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "src/index.ts",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck"
   },
   "dependencies": {
     "expo": "~47.0.12",
@@ -16,7 +18,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "prettier": "^2.8.3"
+    "@types/react": "~18.0.24",
+    "@types/react-native": "~0.70.6",
+    "prettier": "^2.8.3",
+    "typescript": "^4.6.3"
   },
   "prettier": {
     "singleQuote": true,
