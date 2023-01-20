@@ -9,6 +9,8 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+**/__generated__/
+graphql-schema.json
 .env
 
 # macOS
