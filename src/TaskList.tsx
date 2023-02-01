@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 type Task = {
   id: number;
@@ -13,7 +13,9 @@ export function TaskList(props: Props) {
   return (
     <>
       {props.taskList.map((task) => (
-        <Text>{task.name}</Text>
+        <View style={{ padding: 4, marginBottom: 10 }}>
+          <Text>{task.name}</Text>
+        </View>
       ))}
     </>
   );

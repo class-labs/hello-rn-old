@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SafeAreaView, View, Text } from 'react-native';
+import { NewTaskForm } from './NewTaskForm';
 import { TaskList } from './TaskList';
 
 type Task = {
@@ -19,7 +20,6 @@ export function App() {
       <View style={{ padding: 20 }}>
         <Text>Tasks:</Text>
         <TaskList taskList={taskItems} />
-        {/* TODO: Create a NewTaskForm component, it should render a TextInput and a button */}
         <NewTaskForm />
       </View>
     </SafeAreaView>
