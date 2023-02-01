@@ -20,7 +20,11 @@ export function App() {
       <View style={{ padding: 20 }}>
         <Text>Tasks:</Text>
         <TaskList taskList={taskItems} />
-        <NewTaskForm />
+        <NewTaskForm
+          onSubmit={(newTask) => {
+            setTaskItems([...taskItems, newTask]);
+          }}
+        />
       </View>
     </SafeAreaView>
   );

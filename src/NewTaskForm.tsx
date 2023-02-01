@@ -1,6 +1,17 @@
+import { useState } from 'react';
 import { Button, TextInput, View } from 'react-native';
 
-export function NewTaskForm() {
+type Task = {
+  id: number;
+  name: string;
+};
+
+type Props = {
+  onSubmit: (newTask: Task) => void;
+};
+
+export function NewTaskForm(props: Props) {
+  const [text, setText] = useState('');
   return (
     <View style={{ flexDirection: 'row' }}>
       <TextInput
@@ -11,8 +22,21 @@ export function NewTaskForm() {
           paddingHorizontal: 5,
           borderRadius: 4,
         }}
+        value={text}
+        onChangeText={(newText) => {
+          setText(newText);
+        }}
       />
-      <Button title="Add" />
+      <Button
+        title="Add"
+        onPress={() => {
+          props.onSubmit({
+            id: Math.floor(Math.random() * 100000),
+            name: text,
+          });
+          setText('');
+        }}
+      />
     </View>
   );
 }
