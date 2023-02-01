@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, TextInput, View } from 'react-native';
-import { Task } from './types/Task';
+import { Task } from '../types/Task';
 
 type Props = {
   onSubmit: (newTask: Task) => void;
