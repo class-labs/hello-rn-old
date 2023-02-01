@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { Button, TextInput, View } from 'react-native';
-
-type Task = {
-  id: number;
-  name: string;
-};
+import { Task } from './types/Task';
 
 type Props = {
   onSubmit: (newTask: Task) => void;

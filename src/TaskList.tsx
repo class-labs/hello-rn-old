@@ -1,9 +1,5 @@
 import { Text, View } from 'react-native';
-
-type Task = {
-  id: number;
-  name: string;
-};
+import { Task } from './types/Task';
 
 type Props = {
   taskList: Array<Task>;

@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { SafeAreaView, View, Text } from 'react-native';
 import { NewTaskForm } from './NewTaskForm';
 import { TaskList } from './TaskList';
-
-type Task = {
-  id: number;
-  name: string;
-};
+import { Task } from './types/Task';
 
 const initialTasks: Array<Task> = [
   { id: 1, name: 'Make coffee' },
