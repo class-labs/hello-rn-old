@@ -9,7 +9,7 @@ export function Details() {
   const route = useRoute<DetailsScreenRouteProp>();
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details for product: {route.params.productId}</Text>
+      <Text>Org username: {route.params.orgId}</Text>
     </View>
   );
 }
