@@ -1,30 +1,26 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Task } from '../types/Task';
+import { TaskListItem } from './TaskListItem';
 
 type Props = {
   taskList: Array<Task>;
+  onTaskListChange: (taskList: Array<Task>) => void;
 };
 
-// TODO: Make each task item pressable (hint), pressing it will toggle the done status
-// TODO: Consider the "icon" ⌛️ for not done tasks, but your call.
-
 export function TaskList(props: Props) {
+  const { taskList, onTaskListChange } = props;
   return (
     <View style={{}}>
-      {props.taskList.map((task) => (
-        <View
-          style={{
-            padding: 10,
-            marginBottom: 10,
-            borderWidth: 1,
-            borderColor: '#ddd',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+      {taskList.map((task) => (
+        <TaskListItem
+          task={task}
+          onTaskChange={(newTask) => {
+            const newTaskList = taskList.map((task) =>
+              task.id === newTask.id ? newTask : task,
+            );
+            onTaskListChange(newTaskList);
           }}
-        >
-          <Text>{task.name}</Text>
-          <Text>✅</Text>
-        </View>
+        />
       ))}
     </View>
   );

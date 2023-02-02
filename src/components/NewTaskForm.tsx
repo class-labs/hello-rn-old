@@ -29,6 +29,7 @@ export function NewTaskForm(props: Props) {
           props.onSubmit({
             id: Math.floor(Math.random() * 100000),
             name: text,
+            isDone: false,
           });
           setText('');
         }}

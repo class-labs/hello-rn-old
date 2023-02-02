@@ -5,8 +5,8 @@ import { TaskList } from './components/TaskList';
 import { Task } from './types/Task';
 
 const initialTasks: Array<Task> = [
-  { id: 1, name: 'Make coffee' },
-  { id: 2, name: 'Do Laundry' },
+  { id: 1, name: 'Make coffee', isDone: false },
+  { id: 2, name: 'Do Laundry', isDone: false },
 ];
 
 export function App() {
@@ -14,7 +14,12 @@ export function App() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ padding: 20 }}>
-        <TaskList taskList={taskItems} />
+        <TaskList
+          taskList={taskItems}
+          onTaskListChange={(taskList) => {
+            setTaskItems(taskList);
+          }}
+        />
         <NewTaskForm
           onSubmit={(newTask) => {
             setTaskItems([...taskItems, newTask]);
