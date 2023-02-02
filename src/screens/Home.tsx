@@ -14,6 +14,7 @@ export function Home() {
       <Text>Orgs</Text>
       {data.orgs.map((org) => (
         <Button
+          key={org.id}
           title={org.name}
           onPress={() => {
             navigation.navigate('Details', { orgId: org.login });
