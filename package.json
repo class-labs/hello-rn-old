@@ -14,14 +14,22 @@
     "test": "npm run typecheck && npm run lint && npm run format:check"
   },
   "dependencies": {
+    "@tamagui/font-inter": "^1.27.1",
+    "@tamagui/react-native-media-driver": "^1.27.1",
+    "@tamagui/shorthands": "^1.27.1",
+    "@tamagui/themes": "^1.27.1",
     "expo": "~48.0.15",
+    "expo-linear-gradient": "~12.1.2",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
-    "react-native": "0.71.7"
+    "react-native": "0.71.7",
+    "tamagui": "^1.27.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@tamagui/babel-plugin": "^1.27.1",
     "@types/react": "~18.0.27",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "eslint": "^8.40.0",
     "eslint-config-react-app": "^7.0.1",
     "prettier": "^2.8.8",

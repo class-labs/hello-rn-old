@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { TamaguiProvider } from "tamagui";
+import { useFonts } from "expo-font";
+
+import config from "./config/tamagui.config";
+import { Home } from "./Home";
 
 export function App() {
+  const [fontsLoaded] = useFonts({
+    Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Hello React Native!</Text>
-    </View>
+    <TamaguiProvider config={config} disableInjectCSS>
+      <Home />
+    </TamaguiProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
