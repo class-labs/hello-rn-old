@@ -1,19 +1,22 @@
+import { useState } from "react";
 import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 
 export function NewTaskForm() {
+  const [taskName, setTaskName] = useState("");
   return (
     <View style={styles.form}>
       <TextInput
         style={styles.textInput}
-        onChangeText={() => {
-          // Hint: Save the value somewhere
+        value={taskName}
+        onChangeText={(taskName) => {
+          setTaskName(taskName);
         }}
       />
       <Button
         title="Add"
         onPress={() => {
-          // TODO: Alert the value that the user entered in the text input
-          // Hint: Use Alert.alert()
+          Alert.alert(taskName);
+          setTaskName("");
         }}
       />
     </View>
