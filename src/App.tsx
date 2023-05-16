@@ -1,18 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text } from "react-native";
 
 export function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello React Native!</Text>
-    </View>
+    <Text style={{ fontSize: 28 }}>
+      Welcome to the fantastic world of React Native!
+    </Text>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
