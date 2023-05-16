@@ -1,31 +1,21 @@
-import { useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
-import { NewTaskForm } from './components/NewTaskForm';
-import { TaskList } from './components/TaskList';
-import { Task } from './types/Task';
-
-const initialTasks: Array<Task> = [
-  { id: 1, name: 'Make coffee', isDone: false },
-  { id: 2, name: 'Do Laundry', isDone: false },
-];
+/* eslint-disable react/style-prop-object */
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 
 export function App() {
-  const [taskItems, setTaskItems] = useState(initialTasks);
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ padding: 20 }}>
-        <TaskList
-          taskList={taskItems}
-          onTaskListChange={(taskList) => {
-            setTaskItems(taskList);
-          }}
-        />
-        <NewTaskForm
-          onSubmit={(newTask) => {
-            setTaskItems([...taskItems, newTask]);
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Hello world!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
