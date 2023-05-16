@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, StyleSheet, TextInput, View } from "react-native";
 
-export function NewTaskForm() {
+type Props = {
+  onNewTaskSubmit: (newTaskName: string) => void;
+};
+
+export function NewTaskForm(props: Props) {
+  const { onNewTaskSubmit } = props;
   const [taskName, setTaskName] = useState("");
   return (
     <View style={styles.form}>
@@ -15,7 +20,7 @@ export function NewTaskForm() {
       <Button
         title="Add"
         onPress={() => {
-          Alert.alert(taskName);
+          onNewTaskSubmit(taskName);
           setTaskName("");
         }}
       />

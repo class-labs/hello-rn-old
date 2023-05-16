@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 import { NewTaskForm } from "./components/NewTaskForm";
 
@@ -23,7 +23,13 @@ export function App() {
             </Text>
           ))}
         </View>
-        <NewTaskForm />
+        <NewTaskForm
+          onNewTaskSubmit={() => {
+            // Task 5
+            // Update the state to display this new task in the list.
+            // Hint: Use Date.now() to generate a unique ID
+          }}
+        />
       </View>
     </SafeAreaView>
   );
