@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 
 type Props = {
   onNewTaskSubmit: (newTaskName: string) => void;
@@ -20,6 +20,10 @@ export function NewTaskForm(props: Props) {
       <Button
         title="Add"
         onPress={() => {
+          if (taskName.trim() === "") {
+            Alert.alert("Task name cannot be empty");
+            return;
+          }
           onNewTaskSubmit(taskName);
           setTaskName("");
         }}

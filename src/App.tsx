@@ -24,10 +24,12 @@ export function App() {
           ))}
         </View>
         <NewTaskForm
-          onNewTaskSubmit={() => {
-            // Task 5
-            // Update the state to display this new task in the list.
-            // Hint: Use Date.now() to generate a unique ID
+          onNewTaskSubmit={(taskName) => {
+            const newTask = {
+              id: Date.now(),
+              name: taskName,
+            };
+            setTasks([...tasks, newTask]);
           }}
         />
       </View>
