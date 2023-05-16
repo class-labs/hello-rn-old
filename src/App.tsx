@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Button, SafeAreaView, Text, View } from "react-native";
 
-// Task 2
-// Add another button to decrement the count
-
 export function App() {
   const [count, setCount] = useState(71);
   return (
@@ -15,6 +12,18 @@ export function App() {
             setCount(count + 1);
           }}
           title="Increment"
+        />
+        <Button
+          onPress={() => {
+            setCount(count - 1);
+          }}
+          title="Decrement"
+        />
+        <Button
+          onPress={() => {
+            setCount(0);
+          }}
+          title="Reset"
         />
       </View>
     </SafeAreaView>
