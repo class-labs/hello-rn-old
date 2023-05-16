@@ -10,13 +10,10 @@ const tasks = [
 
 export function App() {
   return (
-    <View style={{ padding: 30 }}>
-      {/**
-       * Exercise 1
-       * Render a list of tasks from the array above.
-       * You will need to loop the array and render one <Text> for each item.
-       * Note: Remove this comment and replace with your code
-       */}
+    <View style={{ padding: 40 }}>
+      {tasks.map((task) => (
+        <Text key={task.id}>{task.name}</Text>
+      ))}
     </View>
   );
 }
