@@ -14,11 +14,14 @@ export function App() {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ padding: 20 }}>
         <Text>Tasks:</Text>
-        {/* TODO: loop through the tasks and for each one display task.title  */}
+        {taskItems.map((task) => (
+          <Text>{task.name}</Text>
+        ))}
         <Button
           title="Add new task"
           onPress={() => {
-            // TODO
+            const newTask = { id: 3, name: 'Learn TypeScript' };
+            setTaskItems([...taskItems, newTask]);
           }}
         />
       </View>
