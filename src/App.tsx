@@ -1,19 +1,22 @@
-import { Text, View } from "react-native";
+import { useState } from "react";
+import { Button, SafeAreaView, Text, View } from "react-native";
 
-const tasks = [
-  { id: 1, name: "Make coffee" },
-  { id: 2, name: "Do laundry" },
-  { id: 3, name: "Learn JavaScript" },
-  { id: 4, name: "Buy milk" },
-  { id: 5, name: "Order lunch" },
-];
+// Task 2
+// Add another button to decrement the count
 
 export function App() {
+  const [count, setCount] = useState(71);
   return (
-    <View style={{ padding: 40 }}>
-      {tasks.map((task) => (
-        <Text key={task.id}>{task.name}</Text>
-      ))}
-    </View>
+    <SafeAreaView>
+      <View style={{ paddingHorizontal: 10 }}>
+        <Text>Count: {count}</Text>
+        <Button
+          onPress={() => {
+            setCount(count + 1);
+          }}
+          title="Increment"
+        />
+      </View>
+    </SafeAreaView>
   );
 }
