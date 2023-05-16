@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, SafeAreaView, Text, View } from "react-native";
 
-const tasks = [
+const initialTasks = [
   { id: 1, name: "Make coffee" },
   { id: 2, name: "Do laundry" },
   { id: 3, name: "Learn JavaScript" },
@@ -10,6 +10,7 @@ const tasks = [
 ];
 
 export function App() {
+  const [tasks, setTasks] = useState(initialTasks);
   return (
     <SafeAreaView>
       <View style={{ padding: 40 }}>
@@ -17,11 +18,13 @@ export function App() {
           <Text key={task.id}>{task.name}</Text>
         ))}
       </View>
-      {/**
-       * TODO:
-       * Render a button. When the button is clicked, add one item to the list and re-render.
-       * For now, add just a static item, let's say "Buy shoes"
-       */}
+      <Button
+        title="Add new task"
+        onPress={() => {
+          const newTask = { id: 6, name: "Buy shoes" };
+          setTasks([...tasks, newTask]);
+        }}
+      />
     </SafeAreaView>
   );
 }
