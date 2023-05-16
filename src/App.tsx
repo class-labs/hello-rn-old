@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Button, SafeAreaView, Text, View } from "react-native";
+import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
+
+import { NewTaskForm } from "./components/NewTaskForm";
 
 const initialTasks = [
   { id: 1, name: "Make coffee" },
@@ -13,18 +15,27 @@ export function App() {
   const [tasks, setTasks] = useState(initialTasks);
   return (
     <SafeAreaView>
-      <View style={{ padding: 40 }}>
-        {tasks.map((task) => (
-          <Text key={task.id}>{task.name}</Text>
-        ))}
+      <View style={styles.container}>
+        <View style={styles.taskList}>
+          {tasks.map((task) => (
+            <Text key={task.id} style={styles.taskListItem}>
+              {task.name}
+            </Text>
+          ))}
+        </View>
+        <NewTaskForm />
       </View>
-      <Button
-        title="Add new task"
-        onPress={() => {
-          const newTask = { id: 6, name: "Buy shoes" };
-          setTasks([...tasks, newTask]);
-        }}
-      />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {},
+  taskList: {
+    gap: 10,
+    padding: 14,
+  },
+  taskListItem: {
+    fontSize: 17,
+  },
+});
