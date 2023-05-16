@@ -1,49 +1,23 @@
-import { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { NewTaskForm } from "./components/NewTaskForm";
-
-const initialTasks = [
-  { id: 1, name: "Make coffee" },
-  { id: 2, name: "Do laundry" },
-  { id: 3, name: "Learn JavaScript" },
-  { id: 4, name: "Buy milk" },
-  { id: 5, name: "Order lunch" },
-];
+// Task 6
+// Implement a login page based on the following design.
+// Design: https://github.com/sstur/sstur/assets/369384/20626e07-155d-4e55-8380-bb3405ddecd7
+// Logo image: https://github.com/sstur/sstur/assets/369384/0f18f995-b51c-4bba-b814-8a648ccf9f74
 
 export function App() {
-  const [tasks, setTasks] = useState(initialTasks);
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.taskList}>
-          {tasks.map((task) => (
-            <Text key={task.id} style={styles.taskListItem}>
-              {task.name}
-            </Text>
-          ))}
-        </View>
-        <NewTaskForm
-          onNewTaskSubmit={(taskName) => {
-            const newTask = {
-              id: Date.now(),
-              name: taskName,
-            };
-            setTasks([...tasks, newTask]);
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={{ fontSize: 20 }}>Hello React Native!</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  taskList: {
-    gap: 10,
-    padding: 14,
-  },
-  taskListItem: {
-    fontSize: 17,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
