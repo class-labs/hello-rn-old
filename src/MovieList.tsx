@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   SafeAreaView,
@@ -6,29 +5,31 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
+import { useQuery } from "@tanstack/react-query";
 
 type Movie = {
   id: number;
   title: string;
 };
 
-async function getMovies() {
+async function getMovies(): Promise<Array<Movie>> {
   const response = await fetch("https://xn3k4w-4000.csb.app/movies");
   return await response.json();
 }
 
 export function MovieList() {
-  // Task 8
-  // Replace the useState and useEffect below with useQuery from react-query
-  // This is similar to example 2
-  const [movies, setMovies] = useState<Array<Movie> | null>(null);
-  useEffect(() => {
-    getMovies().then((movies) => {
-      setMovies(movies);
-    });
-  }, []);
+  const { data, error, isLoading } = useQuery(["movies"], getMovies);
+  const movies = data ?? [];
 
-  if (movies === null) {
+  if (error) {
+    return (
+      <SafeAreaView>
+        <Text>{String(error)}</Text>
+      </SafeAreaView>
+    );
+  }
+
+  if (isLoading) {
     return (
       <SafeAreaView>
         <ActivityIndicator />
