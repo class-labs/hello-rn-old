@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
 } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 
@@ -18,6 +19,9 @@ async function getMovies(): Promise<Array<Movie>> {
 }
 
 export function MovieList() {
+  // TODO: Use useState() to store the value of the search input
+  // Remember to set the `value` and `onChangeText` accordingly
+
   const { data, error, isLoading } = useQuery(["movies"], getMovies);
   const movies = data ?? [];
 
@@ -39,10 +43,16 @@ export function MovieList() {
 
   return (
     <SafeAreaView>
+      <TextInput style={styles.searchInput} placeholder="Search..." />
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        {movies.map((movie) => (
-          <Text key={movie.id}>{movie.title}</Text>
-        ))}
+        {
+          // TODO: Filter the movies before we map
+          // You want to filter such that only the movies which match the search
+          // query will be included.
+          movies.map((movie) => (
+            <Text key={movie.id}>{movie.title}</Text>
+          ))
+        }
       </ScrollView>
     </SafeAreaView>
   );
@@ -51,5 +61,13 @@ export function MovieList() {
 const styles = StyleSheet.create({
   contentContainerStyle: {
     padding: 16,
+  },
+  searchInput: {
+    marginHorizontal: 16,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
   },
 });
