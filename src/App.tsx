@@ -1,30 +1,51 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+} from "react-native";
 
-// Task 7
-// Make an HTTP request to the following endpoint
-// https://xn3k4w-4000.csb.app/movies
-// This will return a list of movies
-// Display the title of each movie, in a list.
-// Hint: Remember to use useEffect and useState
+type Movie = {
+  id: number;
+  title: string;
+};
 
 async function getMovies() {
-  // TODO: Put your fetch() logic here and you can use `await`
+  const response = await fetch("https://xn3k4w-4000.csb.app/movies");
+  return await response.json();
 }
 
 export function App() {
-  // TODO: Put your useEffect here
+  const [movies, setMovies] = useState<Array<Movie> | null>(null);
+  useEffect(() => {
+    getMovies().then((movies) => {
+      setMovies(movies);
+    });
+  }, []);
+
+  if (movies === null) {
+    return (
+      <SafeAreaView>
+        <ActivityIndicator />
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Hello React Native!</Text>
-    </View>
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        {movies.map((movie) => (
+          <Text key={movie.id}>{movie.title}</Text>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  contentContainerStyle: {
+    padding: 16,
   },
 });
