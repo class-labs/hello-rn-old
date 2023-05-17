@@ -7,6 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 type Movie = {
   id: number;
@@ -19,11 +20,14 @@ async function getMovies(): Promise<Array<Movie>> {
 }
 
 export function MovieList() {
-  // TODO: Use useState() to store the value of the search input
-  // Remember to set the `value` and `onChangeText` accordingly
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { data, error, isLoading } = useQuery(["movies"], getMovies);
   const movies = data ?? [];
+  const lowerCaseSearchQuery = searchQuery.toLowerCase();
+  const filteredMovies = movies.filter((movie) => {
+    return movie.title.toLowerCase().includes(lowerCaseSearchQuery);
+  });
 
   if (error) {
     return (
@@ -43,16 +47,16 @@ export function MovieList() {
 
   return (
     <SafeAreaView>
-      <TextInput style={styles.searchInput} placeholder="Search..." />
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search..."
+        value={searchQuery}
+        onChangeText={(text) => setSearchQuery(text)}
+      />
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        {
-          // TODO: Filter the movies before we map
-          // You want to filter such that only the movies which match the search
-          // query will be included.
-          movies.map((movie) => (
-            <Text key={movie.id}>{movie.title}</Text>
-          ))
-        }
+        {filteredMovies.map((movie) => (
+          <Text key={movie.id}>{movie.title}</Text>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
