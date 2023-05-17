@@ -1,23 +1,37 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { GithubOrg } from "./types/GithubOrg";
 
-// Task 6
-// Implement a login page based on the following design.
-// Design: https://github.com/sstur/sstur/assets/369384/20626e07-155d-4e55-8380-bb3405ddecd7
-// Logo image: https://github.com/sstur/sstur/assets/369384/0f18f995-b51c-4bba-b814-8a648ccf9f74
+async function getOrgData(): Promise<GithubOrg> {
+  const response = await fetch("https://api.github.com/orgs/microsoft");
+  return await response.json();
+}
 
 export function App() {
+  const [orgData, setOrgData] = useState<GithubOrg | null>(null);
+  useEffect(() => {
+    getOrgData().then((data) => {
+      console.log("Data received:", data);
+      // Now that we get the real data from the server, we can update state
+      setOrgData(data);
+    });
+  }, []);
+  if (orgData === null) {
+    return <Text>Loading...</Text>;
+  }
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 20 }}>Hello React Native!</Text>
-    </View>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 20 }}>{orgData.name}</Text>
+        <Text style={{ fontSize: 16 }}>{orgData.description}</Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 16,
+    gap: 10,
   },
 });
