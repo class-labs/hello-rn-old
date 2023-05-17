@@ -1,4 +1,5 @@
 import {
+  Image,
   Pressable,
   SafeAreaView,
   StyleSheet,
@@ -6,11 +7,15 @@ import {
   TextInput,
   View,
 } from "react-native";
+import logo from "../assets/logo.png";
 
 export function App() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
+        <View style={styles.logo}>
+          <Image source={logo} style={{ width: 48, height: 48 }} />
+        </View>
         <Text style={styles.heading1}>Log in to your account</Text>
         <Text style={styles.heading2}>
           Welcome back! Please enter your details.
@@ -52,8 +57,12 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
   },
-  heading1: {
+  logo: {
     marginTop: 48,
+    marginBottom: 24,
+    alignItems: "center",
+  },
+  heading1: {
     marginBottom: 8,
     fontSize: 24,
     lineHeight: 32,
