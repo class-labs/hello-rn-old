@@ -1,51 +1,13 @@
-import { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-type Movie = {
-  id: number;
-  title: string;
-};
+import { MovieList } from "./MovieList";
 
-async function getMovies() {
-  const response = await fetch("https://xn3k4w-4000.csb.app/movies");
-  return await response.json();
-}
+const queryClient = new QueryClient();
 
 export function App() {
-  const [movies, setMovies] = useState<Array<Movie> | null>(null);
-  useEffect(() => {
-    getMovies().then((movies) => {
-      setMovies(movies);
-    });
-  }, []);
-
-  if (movies === null) {
-    return (
-      <SafeAreaView>
-        <ActivityIndicator />
-      </SafeAreaView>
-    );
-  }
-
   return (
-    <SafeAreaView>
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        {movies.map((movie) => (
-          <Text key={movie.id}>{movie.title}</Text>
-        ))}
-      </ScrollView>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <MovieList />
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  contentContainerStyle: {
-    padding: 16,
-  },
-});
