@@ -1,13 +1,24 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { MovieList } from "./MovieList";
+import { Home } from "./screens/Home";
+import { MovieList } from "./screens/MovieList";
+import { RootStackParamList } from "./types/navigation";
 
 const queryClient = new QueryClient();
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MovieList />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="MovieList" component={MovieList} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </QueryClientProvider>
   );
 }

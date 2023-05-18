@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { Header } from "./components/Header";
-import { Movie } from "./types/Movie";
-import { MovieListItem } from "./components/MovieListItem";
+import { Header } from "../components/Header";
+import { Movie } from "../types/Movie";
+import { MovieListItem } from "../components/MovieListItem";
 
 async function getMovies(): Promise<Array<Movie>> {
   const response = await fetch("https://xn3k4w-4000.csb.app/movies");
@@ -43,7 +43,7 @@ export function MovieList() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "white" }}>
       <Header text="Movies" />
       <TextInput
         style={styles.searchInput}
