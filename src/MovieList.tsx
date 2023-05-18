@@ -1,13 +1,19 @@
 import {
   ActivityIndicator,
+  FlatList,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
 } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+
+// Task 10
+// Style the movie list below to match the design here:
+// https://github.com/sstur/sstur/assets/369384/254400f7-6063-4551-89c7-9326f15a018d
+// Feel free to factor out the individual movie "card" to its own component.
+// Ignore icons and genres and any part of the UI that can't be implemented
 
 type Movie = {
   id: number;
@@ -46,18 +52,18 @@ export function MovieList() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <TextInput
         style={styles.searchInput}
         placeholder="Search..."
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
       />
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        {filteredMovies.map((movie) => (
-          <Text key={movie.id}>{movie.title}</Text>
-        ))}
-      </ScrollView>
+      <FlatList
+        contentContainerStyle={styles.contentContainerStyle}
+        data={filteredMovies}
+        renderItem={({ item }) => <Text>{item.title}</Text>}
+      />
     </SafeAreaView>
   );
 }
