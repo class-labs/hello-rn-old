@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Home } from "./screens/Home";
 import { MovieList } from "./screens/MovieList";
-import { RootStackParamList } from "./types/navigation";
 import { MovieDetails } from "./screens/MovieDetails";
+import { RootStackParamList } from "./types/navigation";
 
 const queryClient = new QueryClient();
 

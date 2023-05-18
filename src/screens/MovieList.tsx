@@ -67,8 +67,8 @@ export function MovieList() {
         renderItem={({ item }) => (
           <MovieListItem
             movie={item}
-            onPress={() => {
-              navigation.navigate("MovieDetails");
+            onPress={(movie) => {
+              navigation.navigate("MovieDetails", { movieId: movie.id });
             }}
           />
         )}
