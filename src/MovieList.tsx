@@ -1,10 +1,12 @@
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
+  View,
 } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -19,11 +21,19 @@ async function getMovies(): Promise<Array<Movie>> {
 
 export function MovieList() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("popularity");
   const { data, error, isLoading } = useQuery(["movies"], getMovies);
   const movies = data ?? [];
   const lowerCaseSearchQuery = searchQuery.toLowerCase();
   const filteredMovies = movies.filter((movie) => {
     return movie.title.toLowerCase().includes(lowerCaseSearchQuery);
+  });
+  const sortedMovies = filteredMovies.slice().sort((a, b) => {
+    if (sortBy === "popularity") {
+      return b.popularity - a.popularity;
+    } else {
+      return Date.parse(b.release_date) - Date.parse(a.release_date);
+    }
   });
 
   if (error) {
@@ -51,9 +61,23 @@ export function MovieList() {
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
       />
+      <View style={styles.buttonRow}>
+        <Button
+          title="Sort by popularity"
+          onPress={() => {
+            setSortBy("popularity");
+          }}
+        />
+        <Button
+          title="Sort by release date"
+          onPress={() => {
+            setSortBy("release-date");
+          }}
+        />
+      </View>
       <FlatList
         contentContainerStyle={styles.contentContainerStyle}
-        data={filteredMovies}
+        data={sortedMovies}
         renderItem={({ item }) => <MovieListItem movie={item} />}
       />
     </SafeAreaView>
@@ -75,5 +99,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 46,
     color: "#667085",
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
