@@ -5,17 +5,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "./screens/Home";
 import { MovieList } from "./screens/MovieList";
 import { RootStackParamList } from "./types/navigation";
+import { MovieDetails } from "./screens/MovieDetails";
 
 const queryClient = new QueryClient();
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-// Task 11
-// When the user presses on a movie, we want to navigate to a movie details page
-// Add a Stack.Screen below
-// Remember to add one entry to the RootStackParamList type also
-// Create a file for the MovieDetails screen (put it in the "screens" folder)
-// For now, just render a blank page that says "Movie Details"
 
 export function App() {
   return (
@@ -24,6 +18,7 @@ export function App() {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="MovieList" component={MovieList} />
+          <Stack.Screen name="MovieDetails" component={MovieDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

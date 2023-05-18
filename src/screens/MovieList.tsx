@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -7,10 +8,18 @@ import {
   TextInput,
 } from "react-native";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 import { Header } from "../components/Header";
 import { Movie } from "../types/Movie";
 import { MovieListItem } from "../components/MovieListItem";
+import { RootStackParamList } from "../types/navigation";
+
+type MovieListScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "MovieList"
+>;
 
 async function getMovies(): Promise<Array<Movie>> {
   const response = await fetch("https://xn3k4w-4000.csb.app/movies");
@@ -18,6 +27,7 @@ async function getMovies(): Promise<Array<Movie>> {
 }
 
 export function MovieList() {
+  const navigation = useNavigation<MovieListScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState("");
   const { data, error, isLoading } = useQuery(["movies"], getMovies);
   const movies = data ?? [];
@@ -54,7 +64,14 @@ export function MovieList() {
       <FlatList
         contentContainerStyle={styles.contentContainerStyle}
         data={filteredMovies}
-        renderItem={({ item }) => <MovieListItem movie={item} />}
+        renderItem={({ item }) => (
+          <MovieListItem
+            movie={item}
+            onPress={() => {
+              navigation.navigate("MovieDetails");
+            }}
+          />
+        )}
       />
     </SafeAreaView>
   );

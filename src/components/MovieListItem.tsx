@@ -1,37 +1,47 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Award, Heart } from "lucide-react-native";
+
 import { Movie } from "../types/Movie";
 
 type Props = {
   movie: Movie;
+  onPress: (movie: Movie) => void;
 };
 
 export function MovieListItem(props: Props) {
-  const { movie } = props;
+  const { movie, onPress } = props;
   return (
-    <View style={styles.card}>
-      <View style={styles.cardInner}>
-        <ImageBackground
-          source={{ uri: movie.backdrop_path }}
-          resizeMode="cover"
-          style={styles.image}
-        >
-          <View style={styles.badge}>
-            <Award color="#9E77ED" size={12} />
-            <Text style={styles.badgeText}>New Release</Text>
+    <TouchableOpacity onPress={() => onPress(movie)}>
+      <View style={styles.card}>
+        <View style={styles.cardInner}>
+          <ImageBackground
+            source={{ uri: movie.backdrop_path }}
+            resizeMode="cover"
+            style={styles.image}
+          >
+            <View style={styles.badge}>
+              <Award color="#9E77ED" size={12} />
+              <Text style={styles.badgeText}>New Release</Text>
+            </View>
+            <View style={styles.iconButton}>
+              <Heart color="white" size={20} />
+            </View>
+          </ImageBackground>
+          <View style={styles.details}>
+            <Text style={styles.releaseDate}>
+              {formatDate(movie.release_date)}
+            </Text>
+            <Text style={styles.title}>{movie.title}</Text>
           </View>
-          <View style={styles.iconButton}>
-            <Heart color="white" size={20} />
-          </View>
-        </ImageBackground>
-        <View style={styles.details}>
-          <Text style={styles.releaseDate}>
-            {formatDate(movie.release_date)}
-          </Text>
-          <Text style={styles.title}>{movie.title}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
