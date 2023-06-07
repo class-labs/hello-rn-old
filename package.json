@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "typecheck": "tsc --noEmit",
-    "test": "npm run typecheck"
+    "lint": "eslint --max-warnings 0 .",
+    "test": "npm run typecheck && npm run lint"
   },
   "dependencies": {
     "expo": "~48.0.18",
@@ -24,11 +25,19 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.0.27",
+    "eslint": "^8.42.0",
+    "eslint-config-react-app": "^7.0.1",
     "typescript": "^4.9.4"
   },
   "overrides": {
     "metro": "0.76.5",
     "metro-resolver": "0.76.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "import/no-anonymous-default-export": "off"
+    }
   },
   "private": true
 }
