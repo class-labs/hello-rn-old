@@ -8,7 +8,9 @@
     "ios": "expo start --ios",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --max-warnings 0 .",
-    "test": "npm run typecheck && npm run lint"
+    "format": "prettier --write app",
+    "format:check": "prettier --check app",
+    "test": "npm run typecheck && npm run lint && npm run format:check"
   },
   "dependencies": {
     "expo": "~48.0.18",
@@ -27,6 +29,7 @@
     "@types/react": "~18.0.27",
     "eslint": "^8.42.0",
     "eslint-config-react-app": "^7.0.1",
+    "prettier": "^2.8.8",
     "typescript": "^4.9.4"
   },
   "overrides": {
@@ -38,6 +41,9 @@
     "rules": {
       "import/no-anonymous-default-export": "off"
     }
+  },
+  "prettier": {
+    "trailingComma": "all"
   },
   "private": true
 }
