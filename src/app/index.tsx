@@ -1,18 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Stack } from "expo-router";
+import { Button, YStack } from "tamagui";
 
-export default function App() {
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>
-    </View>
+    <YStack
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
+      backgroundColor="#ddf"
+    >
+      <Stack.Screen options={{ title: "Home" }} />
+      <Button>Click Me</Button>
+    </YStack>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+};
