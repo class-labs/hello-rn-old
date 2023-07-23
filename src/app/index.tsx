@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { Button, YStack } from "tamagui";
+import { Home } from "@tamagui/lucide-icons";
 
 export default () => {
   return (
@@ -10,7 +11,7 @@ export default () => {
       backgroundColor="#ddf"
     >
       <Stack.Screen options={{ title: "Home" }} />
-      <Button>Click Me</Button>
+      <Button icon={<Home />}>Hello world</Button>
     </YStack>
   );
 };
